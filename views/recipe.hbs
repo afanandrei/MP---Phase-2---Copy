@@ -79,55 +79,51 @@
             </form>
 
             <br><br><br>
-        {{/with}}
+
+            {{!-- COMMENTS --}}
+            <br><br>
+            <div id="page">
+                <h2 id="rate">Comments:</h2>
+                {{#each comments}}
+                    <div id="new">
+                        <p id="cmt_user_new"><a id="com_new_link" href ="profile.html"></a></p>
+                        <p id="my_new_cmt">{{this}}</p>
+                    </div>
+                
+                {{else}}
+                    <p>No Comments</p>
+                {{/each}}
+            
+                <div>
+                    <form action = "/comment/{{_id}}" method = "POST">
+                        <textarea id="comments" name = "comment" placeholder="Comment about this recipe..." rows="5" cols="80" name="comment" maxlength="500"></textarea>
+                        <br>
+                        {{!-- <button id="btn_cmt" onclick="post_cmt(this);">Post Comment</button> --}}
+                        <input type = "submit" value = "Post Comment"/>
+                    </form>
 
 
-        <br><br>
-
-        <div id="page">
-            <h2 id="rate">Comments:</h2>
-            <div id="new">
-                <p id="cmt_user_new"><a id="com_new_link" href ="profile.html"></a></p>
-                <p id="my_new_cmt"></p>
-            </div>
-            <div>
-                <textarea id="comments" placeholder="Comment about this recipe..." rows="5" cols="80" name="comment" maxlength="500"></textarea>
-                <br>
-                <button id="btn_cmt" onclick="post_cmt(this);">Post Comment</button>
-                <h2 id="rate">Rate this recipe by taste and difficulty:</h2>
-                <br>
-                <div id="stars">
-                    <i id="str1" class="fa fa-star"></i>
-                    <i id="str2" class="fa fa-star"></i>
-                    <i id="str3" class="fa fa-star"></i>
-                    <i id="str4" class="fa fa-star"></i>
-                    <i id="str5" class="fa fa-star"></i>
+                    {{!-- RATE --}}
+                    <h2 id="rate">Rate this recipe by taste and difficulty:</h2>
                     <br>
-                    <button id="btn" onclick="rate(this);">Rate</button>
+                    <div id="stars">
+                        <i id="str1" class="fa fa-star"></i>
+                        <i id="str2" class="fa fa-star"></i>
+                        <i id="str3" class="fa fa-star"></i>
+                        <i id="str4" class="fa fa-star"></i>
+                        <i id="str5" class="fa fa-star"></i>
+                        <br>
+                        <button id="btn" onclick="rate(this);">Rate</button>
+                    </div>
                 </div>
+            <br><br><br>
             </div>
-          <br><br><br>
-        </div>
-        <br>
+            <br>
+        {{/with}}
 
         {{!-- Delete LATER --}}
         <p>DELETE LATER</p>
         <a href = '/'>Home</a>
-        
-        <script>
-            const delete = document.querySelector('#deleteBtn');
-
-            delete.addEventListener('click', (e) => {
-                const end = `/recipe/${delete.dataset.doc}`;
-
-                fetch(end, {
-                    method : 'DELETE'
-                })
-                .then((response) => response.json())
-                .then((data) => window.location.href = data.redirect);
-                .catch (err) => console.log(err));
-            })
-        </script>
 
     </body>
 </html>

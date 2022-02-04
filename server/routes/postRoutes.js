@@ -20,12 +20,15 @@ router.get('/random-recipe', recipeController.showRandom);
 //To search for a recipe/post based on title
 router.post('/search', recipeController.searchRecipe);
 
-// //To delete a recipe/post
+//To delete a recipe/post
 router.post('/delete/:id', recipeController.deleteRecipe)
 
 
-// //To update a recipe/post
+//To update a recipe/post
 router.get('/update/:id', recipeController.updateRecipe)
 router.post('/update/:id', recipeController.updateRecipeDone)
+
+//To comment on a post
+router.post('/comment/:id', recipeController.commentRecipe)
 
 module.exports = router;

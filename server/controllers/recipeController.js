@@ -140,7 +140,9 @@ const RecipeController = {
 
         const { title, description, image, ingredients, preparation } = req.body
 
-        console.log('Title ' + req.body.title);
+        const curRecipe = await Recipe.findById(curid);
+
+        console.log('Title ' + curRecipe.title);
 
         //To save image
         var uploadedImage;
@@ -165,11 +167,11 @@ const RecipeController = {
         }
     
         const updatedRecipe = {
-            title: title,
-            description: description,
+            title: title || curRecipe.title,
+            description: description || curRecipe.description,
             image: imageName,
-            ingredients : ingredients,
-            preparation : preparation
+            ingredients : ingredients || curRecipe.ingredients,
+            preparation : preparation || curRecipe.preparation
         }
 
         Recipe.findOneAndUpdate({_id: curid}, updatedRecipe, function(err, succ) 
@@ -177,7 +179,7 @@ const RecipeController = {
             if(err)
                 console.log(err);
             else
-                console.log('edited');
+                console.log('Recipe Edited');
         })
 
         //to return to home after updating
@@ -187,13 +189,32 @@ const RecipeController = {
     deleteRecipe : async (req, res) => 
     {
         const curid = req.params.id;
-        console.log(curid);
 
         Recipe.deleteOne({_id: req.params.id}, function(){
             //to return to home after deleting
             res.redirect('/');
             console.log('DELETED');
         })
+    },
+
+    commentRecipe : async (req, res) =>
+    {
+        const curid = req.params.id;
+        const comment = req.body.comment;
+        console.log(comment);
+        console.log(curid);
+
+        Recipe.findByIdAndUpdate({_id : curid}, { $push: { comments : comment } }, function (err, docs) 
+        {
+            if (err){
+                console.log(err)
+            }
+            else{
+                console.log("Updated User : ", docs);
+            }
+        });
+
+        res.redirect('/recipe/' + curid);
     }
 }   
 

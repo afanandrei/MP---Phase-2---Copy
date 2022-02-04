@@ -137,8 +137,9 @@ const RecipeController = {
     {
         //To get the ID
         const curid = req.params.id;
-
         const { title, description, image, ingredients, preparation } = req.body
+
+        console.log('Title ' + req.body.title);
 
         //To save image
         var uploadedImage;

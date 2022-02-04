@@ -108,7 +108,11 @@ const RecipeController = {
     {
         try {
             let searchTerm = req.body.searchTerm;
-            let recipes = await Recipe.find({ $text : { $search : searchTerm, $diacriticSensitive : true}});
+            
+            // let recipes = await Recipe.find({ $text : { $search : searchTerm, $diacriticSensitive : true}});
+            let recipes = await Recipe.find({ title: new RegExp(searchTerm, "i")})
+            console.log(recipes)
+
             res.render('search', {recipes});
 
         } catch (error) {

@@ -1,35 +1,20 @@
 <html>
     <head>
         
-        <title>Create a Recipe</title>
+        <title>Edit Recipe</title>
         <link rel="stylesheet" href="./css/add_style.css">
-        <script>
-
-            let addIngredientsBtn = document.getElementById('addIngredientsBtn');
-            let ingredientList = document.querySelector('.ingredientList');
-            let ingredientDiv = document.querySelectorAll('.ingredientDiv')[0];
-
-            addIngredientsBtn.addEventListener('click', function()
-            {
-                let newIngredients = ingredientDiv.cloneNode(true);
-                let input = newIngredients.getElementsByTagName('input')[0];
-                input.value = '';
-                ingredientList.appendChild(newIngredients);
-            });
-
-
-        </script>
+        
     </head>
 
     <body>
         <div class = 'center'>
-            <h4> Create a Recipe</h4><br>
+            <h4>Edit Recipe</h4><br>
             {{#with recipe}}
                 <form action = "/update/{{_id}}" encType="multipart/form-data" method = "POST">
                     {{!-- TITLE --}}
                     {{!-- <label for ="title" class = "form-label">Title:</label> --}}
                     <h5>Title:</h5>
-                    <input type = "text" name = "title" id = "title" class ="txt" placeholder = "{{this.title}}" />
+                    <input type = "text" name = "title" id = "title" class ="txt" placeholder = "{{title}}" />
                     <br>
 
                     {{!-- DESCRIPTION --}}
@@ -45,35 +30,62 @@
                     <h5>Ingredients: </h5>
                     <div class = "ingredientList">
                         <div class = "ingredientDiv">
-                            <input type = "text" name = "ingredients" class ="txt" placeholder = "{{ingredientss}}" />
+                            <input type = "text" name = "ingredients" class ="txt" placeholder = "{{ingredients}}" />
                         </div>
                     </div>
 
-                    <br>
                     <button type = "button" class = "btn" id = "addIngredientsBtn" >+ Ingredient</button>
-                    <br>
+                    <br><br><br>
+
 
                     {{!-- PREPARATION --}}
                     <h5>Preparation:</h5>
                     <div class = "preparationList">
-                        <input type = "text" name = "preparation" class = "txt" placeholder = "{{preparations}}" />
+                        <div class = "preparationDiv">
+                            <input type = "text" name = "preparation" class ="txt" placeholder = "{{preparation}}" />
+                        </div>
                     </div>
-                    <br>
-                    
-                    {{!-- BUTTON TO ADD PREPARATION --}}
-                    <button type = "button" class = "btn" id = "addPrepBtn">+ Steps</button>
-                    <br>
-                    
-                    {{!-- SUBMIT BUTTON --}}
-                    {{!-- <button type = "submit" class = "btn">Submit Post</button> --}}
-                    <input type = "submit" id = "post" value = "Edit Post"/>
-                </form>
 
+                    <button type = "button" class = "btn" id = "addPrepBtn" >+ Preparation</button>
+                    <br><br><br>
+
+                    {{!-- SUBMIT BUTTON --}}
+                    <input type = "submit" id = "post" value = "Submit Post">
+                </form>
             {{/with}}
+            
             {{!-- REMOVE --}}
             <p>To remove later :</p>
             <a href = "/">Home</a>
+
+            <script>
+                let addIngredientsBtn = document.getElementById('addIngredientsBtn');
+                let ingredientList = document.querySelector('.ingredientList');
+                let ingredientDiv = document.querySelectorAll('.ingredientDiv')[0];
+
+                addIngredientsBtn.addEventListener('click', function()
+                {
+                    let newIngredients = ingredientDiv.cloneNode(true);
+                    let input = newIngredients.getElementsByTagName('input')[0];
+                    input.value = '';
+                    ingredientList.appendChild(newIngredients);
+                })
+
+                let addPrepBtn = document.getElementById('addPrepBtn');
+                let preparationList = document.querySelector('.preparationList');
+                let preparationDiv = document.querySelectorAll('.preparationDiv')[0];
+
+                addPrepBtn.addEventListener('click', function()
+                {
+                    let newPreparation = preparationDiv.cloneNode(true);
+                    let inputP = newPreparation.getElementsByTagName('input')[0];
+                    inputP.value = '';
+                    preparationList.appendChild(newPreparation);
+                })
+        </script>
+
         </div>
     </body>
 </html>
+
 

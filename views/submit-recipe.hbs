@@ -3,22 +3,7 @@
         
         <title>Create a Recipe</title>
         <link rel="stylesheet" href="./css/add_style.css">
-        <script>
-
-            let addIngredientsBtn = document.getElementById('addIngredientsBtn');
-            let ingredientList = document.querySelector('.ingredientList');
-            let ingredientDiv = document.querySelectorAll('.ingredientDiv')[0];
-
-            addIngredientsBtn.addEventListener('click', function()
-            {
-                let newIngredients = ingredientDiv.cloneNode(true);
-                let input = newIngredients.getElementsByTagName('input')[0];
-                input.value = '';
-                ingredientList.appendChild(newIngredients);
-            });
-
-
-        </script>
+        
     </head>
 
     <body>
@@ -48,30 +33,58 @@
                     </div>
                 </div>
 
-                <br>
                 <button type = "button" class = "btn" id = "addIngredientsBtn" >+ Ingredient</button>
-                <br>
+                <br><br><br>
+
 
                 {{!-- PREPARATION --}}
                 <h5>Preparation:</h5>
                 <div class = "preparationList">
-                    <input type = "text" name = "preparation" class = "txt" placeholder = "Add a Preparation here" required/>
+                    <div class = "preparationDiv">
+                        <input type = "text" name = "preparation" class ="txt" placeholder = "Add a Preparation here" required/>
+                    </div>
                 </div>
-                <br>
-                
-                {{!-- BUTTON TO ADD PREPARATION --}}
-                <button type = "button" class = "btn" id = "addPrepBtn">+ Steps</button>
-                <br>
-                
+
+                <button type = "button" class = "btn" id = "addPrepBtn" >+ Preparation</button>
+                <br><br><br>
+
                 {{!-- SUBMIT BUTTON --}}
-                {{!-- <button type = "submit" class = "btn">Submit Post</button> --}}
                 <input type = "submit" id = "post" value = "Submit Post">
             </form>
             
             {{!-- REMOVE --}}
             <p>To remove later :</p>
             <a href = "/">Home</a>
+
+            <script>
+                let addIngredientsBtn = document.getElementById('addIngredientsBtn');
+                let ingredientList = document.querySelector('.ingredientList');
+                let ingredientDiv = document.querySelectorAll('.ingredientDiv')[0];
+
+                addIngredientsBtn.addEventListener('click', function()
+                {
+                    let newIngredients = ingredientDiv.cloneNode(true);
+                    let input = newIngredients.getElementsByTagName('input')[0];
+                    input.value = '';
+                    ingredientList.appendChild(newIngredients);
+                })
+
+                let addPrepBtn = document.getElementById('addPrepBtn');
+                let preparationList = document.querySelector('.preparationList');
+                let preparationDiv = document.querySelectorAll('.preparationDiv')[0];
+
+                addPrepBtn.addEventListener('click', function()
+                {
+                    let newPreparation = preparationDiv.cloneNode(true);
+                    let inputP = newPreparation.getElementsByTagName('input')[0];
+                    inputP.value = '';
+                    preparationList.appendChild(newPreparation);
+                })
+        </script>
+
         </div>
     </body>
+
+    
 </html>
 

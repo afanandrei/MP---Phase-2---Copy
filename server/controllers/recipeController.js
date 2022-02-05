@@ -111,7 +111,9 @@ const RecipeController = {
             
             // let recipes = await Recipe.find({ $text : { $search : searchTerm, $diacriticSensitive : true}});
             let recipes = await Recipe.find({ title: new RegExp(searchTerm, "i")})
-            console.log(recipes)
+            
+            //to show recipes on console
+            // console.log(recipes)
 
             res.render('search', {recipes});
 

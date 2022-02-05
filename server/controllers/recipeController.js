@@ -53,11 +53,11 @@ const RecipeController = {
             })
 
             //Test
-            console.log('Title: ' + req.body.title);
-            console.log('Description ' + req.body.description);
-            console.log('Image ' + imageName);
-            console.log('Ingredients: ' + req.body.ingredients);
-            console.log('Preparation: ' + req.body.preparation);
+            // console.log('Title: ' + req.body.title);
+            // console.log('Description ' + req.body.description);
+            // console.log('Image ' + imageName);
+            // console.log('Ingredients: ' + req.body.ingredients);
+            // console.log('Preparation: ' + req.body.preparation);
 
             await newRecipe.save()
 
@@ -144,7 +144,7 @@ const RecipeController = {
 
         const curRecipe = await Recipe.findById(curid);
 
-        console.log('Title ' + curRecipe.title);
+        // console.log('Title ' + curRecipe.title);
 
         //To save image
         var uploadedImage;
@@ -192,7 +192,7 @@ const RecipeController = {
     {
         const curid = req.params.id;
 
-        Recipe.deleteOne({_id: req.params.id}, function(){
+        Recipe.deleteOne({_id: curid}, function(){
             //to return to home after deleting
             res.redirect('/');
             console.log('DELETED');
@@ -203,8 +203,10 @@ const RecipeController = {
     {
         const curid = req.params.id;
         const comment = req.body.comment;
-        console.log(comment);
-        console.log(curid);
+
+        
+        // console.log(comment);
+        // console.log(curid);
 
         Recipe.findByIdAndUpdate({_id : curid}, { $push: { comments : comment } }, function (err, docs) 
         {

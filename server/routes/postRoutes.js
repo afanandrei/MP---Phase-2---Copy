@@ -28,7 +28,10 @@ router.post('/delete/:id', recipeController.deleteRecipe)
 router.get('/update/:id', recipeController.updateRecipe)
 router.post('/update/:id', recipeController.updateRecipeDone)
 
-//To comment on a post
+//To comment on a recipe
 router.post('/comment/:id', recipeController.commentRecipe)
+
+//To like a recipe
+router.post('/like/:id', recipeController.likeRecipe)
 
 module.exports = router;

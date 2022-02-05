@@ -49,7 +49,8 @@ const RecipeController = {
                 description : req.body.description,
                 image : imageName,
                 ingredients : req.body.ingredients, 
-                preparation : req.body.preparation
+                preparation : req.body.preparation,
+                likes : 0
             })
 
             //Test
@@ -183,7 +184,7 @@ const RecipeController = {
             if(err)
                 console.log(err);
             else
-                console.log('Recipe Edited');
+                console.log('Recipe Updated');
         })
 
         //to return to home after updating
@@ -198,7 +199,7 @@ const RecipeController = {
         Recipe.deleteOne({_id: curid}, function(){
             //to return to home after deleting
             res.redirect('/');
-            console.log('DELETED');
+            console.log('Recipe Deleted');
         })
     },
 
@@ -218,7 +219,29 @@ const RecipeController = {
                 console.log(err)
             }
             else{
-                console.log("Updated User : ", docs);
+                console.log("Commented");
+            }
+        });
+
+        res.redirect('/recipe/' + curid);
+    },
+
+    likeRecipe : async(req, res) =>
+    {
+        const curid = req.params.id;
+        const curRecipe = await Recipe.findById(curid);
+
+        const likes = curRecipe.likes + 1;
+
+        console.log("Likes " + likes);
+
+        Recipe.findByIdAndUpdate({_id : curid}, {likes : likes}, function (err, docs) 
+        {
+            if (err){
+                console.log(err)
+            }
+            else{
+                console.log("Liked");
             }
         });
 

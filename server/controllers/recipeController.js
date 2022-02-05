@@ -122,6 +122,7 @@ const RecipeController = {
         }
     },
 
+    //To render update form
     updateRecipe : async  (req, res) => 
     {
         try {
@@ -135,6 +136,7 @@ const RecipeController = {
         }
     },
 
+    //To udpate recipe and render it afterwards
     updateRecipeDone : async (req, res) =>
     {
         //To get the ID
@@ -188,6 +190,7 @@ const RecipeController = {
         res.redirect('/recipe/' + curid);
     }, 
 
+    //To delete recipe
     deleteRecipe : async (req, res) => 
     {
         const curid = req.params.id;
@@ -199,6 +202,7 @@ const RecipeController = {
         })
     },
 
+    //To comment on a recipe
     commentRecipe : async (req, res) =>
     {
         const curid = req.params.id;

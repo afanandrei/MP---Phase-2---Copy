@@ -185,7 +185,7 @@ const RecipeController = {
         })
 
         //to return to home after updating
-        res.redirect('/');
+        res.redirect('/recipe/' + curid);
     }, 
 
     deleteRecipe : async (req, res) => 

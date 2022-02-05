@@ -226,14 +226,11 @@ const RecipeController = {
         res.redirect('/recipe/' + curid);
     },
 
-    likeRecipe : async(req, res) =>
+    likeRecipe : async (req, res) =>
     {
         const curid = req.params.id;
         const curRecipe = await Recipe.findById(curid);
-
         const likes = curRecipe.likes + 1;
-
-        console.log("Likes " + likes);
 
         Recipe.findByIdAndUpdate({_id : curid}, {likes : likes}, function (err, docs) 
         {

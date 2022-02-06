@@ -23,7 +23,6 @@ router.post('/search', recipeController.searchRecipe);
 //To delete a recipe/post
 router.post('/delete/:id', recipeController.deleteRecipe)
 
-
 //To update a recipe/post
 router.get('/update/:id', recipeController.updateRecipe)
 router.post('/update/:id', recipeController.updateRecipeDone)
